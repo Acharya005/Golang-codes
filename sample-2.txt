@@ -1,0 +1,48 @@
+package main
+
+import (
+	"fmt"
+)
+
+type accomodation struct {
+	guesthousename string
+	price          int
+	roomavl        int
+}
+
+func searchroom(date string) {
+
+	var rooms map[string][]accomodation
+	rooms = make(map[string][]accomodation)
+	rooms["01.04.2023"] = []accomodation{
+
+		{"Srinivasam", 204, 200},
+		{"Nandakam", 804, 50},
+		{"Madavam", 304, 70},
+		{"Vishnuvasam", 904, 28},
+	}
+
+	rooms["02.04.2023"] = []accomodation{
+
+		{"Srinivasam", 204, 200},
+		{"Nandakam", 804, 50},
+		{"Madavam", 304, 70},
+		{"Vishnuvasam", 904, 28},
+	}
+
+	fmt.Println(rooms)
+	count := 0
+	for i, v := range rooms {
+		if v[0].guesthousename == "Srinivasam" {
+			count = count + v[0].roomavl
+		}
+		fmt.Println(i, v)
+	}
+	fmt.Println("Abishek Thirumala rooms", count)
+
+}
+func main() {
+
+	searchroom("27.04.2023")
+
+}

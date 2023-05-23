@@ -1,0 +1,111 @@
+package main
+
+import "fmt"
+
+type sports interface {
+	game()
+}
+type cricket struct {
+	req  map[string]string
+	req1 map[string][]string
+}
+
+func (a cricket) game() {
+	a.req = make(map[string]string)
+	a.req1 = make(map[string][]string)
+	a.req["Location"] = "Banglore"
+	a.req["Stadium"] = "Chinnaswamy"
+	a.req1["Kit"] = []string{"Bat", "Ball", "kneepad", "Wickets"}
+	fmt.Println(a)
+	fmt.Println(" ")
+
+}
+
+type bowling struct {
+	name  map[string]string
+	overs map[string]string
+}
+
+func (b bowling) game() {
+	b.name = map[string]string{"siraj": "6 overs", "chahal": "4 overs", "bumra": "2 overs", "jadeja": "8 overs"}
+	b.overs = map[string]string{"siraj": "4 wkts", "chahal": "3 wkts", "bumra": "1 wkt", "jadeja": "2 wkts"}
+
+	fmt.Println("Bowling summary")
+	fmt.Println(" ")
+
+	for na, bow := range b.name {
+
+		fmt.Println(na, "--bowled--", bow)
+	}
+
+	for na, wkt := range b.overs {
+
+		fmt.Println(na, "took", wkt)
+	}
+
+}
+
+func bestbow(wkts int) {
+
+	if wkts == 3 {
+		fmt.Println("chahal took 3 wkts")
+	} else if wkts == 4 {
+		fmt.Println("The best bowler siraj took 4wkts ")
+	}
+	fmt.Println("")
+}
+
+type batting struct {
+	name  map[string]string
+	score map[string]string
+}
+
+func (c batting) game() {
+	c.name = map[string]string{"Kholi": "1st", "Rohit": "2nd", "SKyadav": "3rd", "jadeja": "4th"}
+	c.score = map[string]string{"Kohli": "121 runs", "Rohit": "79 runs", "SKyadav": "111 runs", "jadeja": "67 runs"}
+
+	fmt.Println("Batting summary")
+	fmt.Println("")
+
+	for player, bat := range c.name {
+
+		fmt.Println(player, "--batted--", bat)
+	}
+
+	for player, hits := range c.score {
+
+		fmt.Println(player, "runs", hits)
+	}
+
+}
+
+func bestbat(run int) {
+	var sc string
+	switch run {
+	case 67:
+		sc = "Jadeja scores well"
+	case 111:
+		sc = "SKyadav tremandous play"
+	case 121:
+		sc = "King Kohli is the man of the match"
+	default:
+		fmt.Println("no data")
+	}
+	fmt.Println(sc)
+}
+func main() {
+	var sgn sports
+	var nam cricket
+	sgn = &nam
+	sgn.game()
+	var par bowling
+	sgn = &par
+	sgn.game()
+	bestbow(4)
+
+	var bat1 batting
+	sgn = &bat1
+	sgn.game()
+	bestbat(121)
+
+}
