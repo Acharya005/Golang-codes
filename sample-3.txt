@@ -1,0 +1,155 @@
+package main
+
+import (
+	"fmt"
+)
+
+type createacco struct {
+	ph_no, otp int
+	account_no int
+	bankname   string
+}
+
+func (a createacco) create() {
+
+	fmt.Println("Enter your ph.no.")
+	fmt.Scanln(&a.ph_no)
+	if a.ph_no == 0 {
+		fmt.Println("Enter valid ph.no.")
+		fmt.Scanln(&a.ph_no)
+	} else if a.ph_no != 0 {
+
+		fmt.Println(a.ph_no)
+	}
+
+	a.ph_no = 9845475862
+
+	fmt.Println("Enter your account.no.")
+	fmt.Scanln(&a.account_no)
+	if a.account_no == 0 {
+		fmt.Println("Enter valid account.no.")
+		fmt.Scanln(&a.account_no)
+	} else if a.account_no != 0 {
+
+		fmt.Println(a.account_no)
+	}
+
+	a.account_no = 1199101040604
+
+	fmt.Println("Enter your Bank name.")
+	fmt.Scanln(&a.bankname)
+
+	a.bankname = "Canara bank"
+
+	fmt.Println("Enter otp")
+	fmt.Scanln(&a.otp)
+	if a.otp == 0 {
+		fmt.Println("Invalid otp")
+	} else if a.otp != 0 {
+		fmt.Println("Your account has been created")
+	}
+	fmt.Println()
+	fmt.Println("Ph.no :", a.ph_no)
+	fmt.Println("Account.no :", a.account_no)
+	fmt.Println("Bank name :", a.bankname)
+	fmt.Println()
+}
+
+func checkbal(pin int) {
+	var bank string
+	fmt.Scanln(&pin)
+	switch bank {
+	case "STATE BANK OF INDIA" :
+
+		pin = 2468
+		fmt.Println("Bank name :", bank)
+		fmt.Println("Avaliable bal amount : 10500 RS")
+	case "CANARA BANK" :
+		pin = 4672 
+		fmt.Println("Bank name :", bank)
+		fmt.Println("Avaliable bal amount : 25000 RS")
+	case "HDFC" :
+		pin = 9590 
+		fmt.Println("Bank name :", bank)
+		fmt.Println("Avaliable bal amount : 5000000 RS")
+	case "KARNATAKA BANK" :
+		pin = 5674 
+		fmt.Println("Bank name :", bank)
+		fmt.Println("Avaliable bal amount : 100005000 RS")
+	default:
+		fmt.Println("In valid pin")
+	}
+	fmt.Println()
+}
+
+type transfermoney interface {
+	mob_no() int
+	acc_no() int
+	self_acc() int
+}
+
+type msend1 struct {
+	amt int
+	pin int
+}
+
+func (m msend1) mob_no() int {
+	fmt.Println("Transfer money")
+	fmt.Println()
+	fmt.Println("Enter amount")
+	fmt.Scanln(&m.amt)
+	if m.amt == 0 {
+		fmt.Println("Enter valid amount")
+		fmt.Scanln(&m.amt)
+	} else if m.amt != 0 {
+		fmt.Println("Entered amount is :", m.amt)
+	}
+
+	fmt.Println("Enter pin")
+	fmt.Scanln(&m.pin)
+	if m.pin == 0 {
+		fmt.Println("Enter valid pin")
+		fmt.Scanln(&m.pin)
+	} else if m.pin != 0 {
+		fmt.Println("Entered amount is :", m.pin)
+	}
+	fmt.Println()
+	return 8310110809
+
+}
+
+type msend2 struct {
+	msend1
+}
+
+func (a msend2) acc_no() int {
+	return 1100101040604
+}
+
+type msend3 struct {
+	msend2
+}
+
+func (s msend3) self_acc() int {
+
+	return 2359761133
+}
+func main() {
+
+	var abi createacco
+	abi.create()
+	checkbal(1234)
+	var bai transfermoney
+	var mani msend3
+	bai = &mani
+	bai.mob_no()
+	r1 := mani.mob_no()
+	fmt.Println(r1)
+	bai.acc_no()
+	r2 := mani.acc_no()
+	fmt.Println(r2)
+	bai.self_acc()
+	r3 := mani.self_acc()
+	fmt.Println(r3)
+
+}

@@ -1,0 +1,39 @@
+package main
+
+import (
+	"fmt"
+)
+
+type ibm struct {
+	name, dept string
+	id, sal    int
+}
+
+var allempdetails []ibm = []ibm{
+
+	{"Abi", "npd", 005, 500000},
+	{"Mani", "production", 054, 650000},
+	{"Manja", "design", 055, 4500000},
+	{"Madhan", "Quality", 056, 4500000},
+}
+
+func serachemp(name string, id int) {
+	var emp [4]ibm
+	for i := 0; i < 4; i++ {
+		if allempdetails[i].id == 005 {
+			emp[i].name = allempdetails[i].name
+			emp[i].dept = allempdetails[i].dept
+			emp[i].sal = allempdetails[i].sal
+
+		}
+
+	}
+	fmt.Println(allempdetails)
+	fmt.Println(emp)
+
+}
+
+func main() {
+	serachemp("abi", 500000)
+
+}
