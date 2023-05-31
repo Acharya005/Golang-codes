@@ -1,0 +1,140 @@
+package main
+
+import (
+	"fmt"
+)
+
+type cities struct {
+	name []string
+}
+
+func (c cities) selectcities() {
+	c.name = []string{"Mumbai", "Delhi", "Bengaluru", "Hyderabad", "Ahmadabad", "Chennai"}
+	fmt.Println(c.name)
+	fmt.Println("select your city")
+	fmt.Scanln(&c.name)
+	fmt.Println("Bengaluru")
+	fmt.Println("")
+}
+
+type recomendedmovies struct {
+	firstName string
+	lastName  string
+	jener     string
+}
+
+func (a recomendedmovies) fullName() string {
+	return fmt.Sprintf("%s %s", a.firstName, a.lastName)
+}
+
+type list struct {
+	title  string
+	rating float32
+	recomendedmovies
+}
+
+func (p list) details() {
+	fmt.Println("Title: ", p.title)
+	fmt.Println("Rating: ", p.rating)
+	fmt.Println("recomendedmovies : ", p.fullName())
+	fmt.Println("jener: ", p.jener)
+}
+
+type website struct {
+	lists []list
+}
+
+func (w website) contents() {
+	fmt.Println("Recomended movies")
+	for _, v := range w.lists {
+		v.details()
+		fmt.Println()
+	}
+}
+
+type selectmovie struct {
+	moviename, theatername string
+	price                  float32
+	time                   string
+}
+
+func searchmovie(date string) {
+	fmt.Println("Select Theater")
+	fmt.Println(" ")
+
+	var movies map[string][]selectmovie
+	movies = make(map[string][]selectmovie)
+	movies["01.05.2023"] = []selectmovie{
+
+		{"PS-2", "Rockline mal", 250, "10:30"},
+		{"Ragavendra stores", "Pvr", 150, "16:45"},
+		{"Virupaksha", "Vaishnavi saphire", 180, "22:30"},
+	}
+	movies["03.05.2023"] = []selectmovie{
+
+		{"PS-2", "Rockline mal", 450, "12:30"},
+		{"Agent", "Pvr", 180, "17:15"},
+		{"Virupaksha", "Imax", 280, "20:30"},
+	}
+	movies["04.05.2023"] = []selectmovie{
+
+		{"PS-2", "Ashoka", 150, "13:30"},
+		{"Ragavendra stores", "Bharthi", 150, "18:00"},
+		{"Virupaksha", "Goplan mall", 180, "22:30"},
+	}
+
+	for i, v := range movies {
+		if v[0].moviename == "PS-2" {
+
+		}
+		fmt.Println(i, v)
+	}
+	fmt.Println("  ")
+	fmt.Println("Selected movie")
+	fmt.Println("Movie : PS-2")
+	fmt.Println("Theatername: Rockline mal")
+	fmt.Println("Price: 250")
+	fmt.Println("Timings: 12:30")
+
+}
+func main() {
+	var abi cities
+	abi.selectcities()
+	recomendedmovies1 := recomendedmovies{
+		"Jaggesh",
+		"CK",
+		"Comedy",
+	}
+	recomendedmovies2 := recomendedmovies{
+		"Chiyan",
+		"Vikram",
+		"Historic",
+	}
+
+	recomendedmovies3 := recomendedmovies{
+		"Sai",
+		"Dharma Tej",
+		"Mistery",
+	}
+
+	list1 := list{
+		"Ragavendra stores",
+		8.1,
+		recomendedmovies1,
+	}
+	list2 := list{
+		"Ponniyan selvan-2",
+		8.6,
+		recomendedmovies2,
+	}
+	list3 := list{
+		"Virupaksha",
+		9.3,
+		recomendedmovies3,
+	}
+	w := website{
+		lists: []list{list1, list2, list3},
+	}
+	w.contents()
+	searchmovie("01.05.2023")
+}
